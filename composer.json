@@ -1,0 +1,16 @@
+{
+  "name": "fsa/neuronphp",
+  "description": "Простой каркас PHP приложения.",
+  "authors": [
+    {
+      "name": "Sergey Fedotov",
+      "email": "fsa@tavda.info"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "classmap": ["src"]
+  }
+}
