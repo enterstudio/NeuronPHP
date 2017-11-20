@@ -1,10 +1,15 @@
 {
   "name": "fsa/neuronphp",
+  "type": "library",
   "description": "Простой каркас PHP приложения.",
+  "homepage": "https://github.com/FSA/NeuronPHP",
+  "license": "LGPL-3.0",
   "authors": [
     {
       "name": "Sergey Fedotov",
-      "email": "fsa@tavda.info"
+      "email": "fsa@tavda.info",
+      "homepage": "https://tavda.net",
+      "role": "Developer"
     }
   ],
   "require": {
