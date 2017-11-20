@@ -12,6 +12,7 @@ class HTML {
   public static function getInstance() {
     if (self::$_instance === null) {
       self::$_instance = new Templates\HTML();
+      self::$_instance->header='';
     }
     return self::$_instance;
   }
