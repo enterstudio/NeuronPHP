@@ -18,9 +18,10 @@ class Settings {
   }
 
   public static function get($name) {
-    if(!isset(self::$settings->$name)) {
+    $settings=self::$_instance->settings;
+    if(!isset($settings->$name)) {
       throw new AppException('Не найден параметр в файле конфигурации!');
     }
-    return self::$settings->$name;
+    return $settings->$name;
   }
 }
