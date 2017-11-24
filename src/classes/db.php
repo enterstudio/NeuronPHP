@@ -1,5 +1,4 @@
 <?php
-use Settings;
 class DB {
   private static $_instance=null;
 
