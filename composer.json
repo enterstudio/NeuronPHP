@@ -1,7 +1,8 @@
 {
   "name": "fsa/neuronphp",
-  "type": "library",
   "description": "Простой каркас PHP приложения.",
+  "version": "0.0.1-alpha1",
+  "type": "library",
   "homepage": "https://github.com/FSA/NeuronPHP",
   "license": "LGPL-3.0",
   "authors": [
