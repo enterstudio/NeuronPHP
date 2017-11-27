@@ -4,7 +4,7 @@ set_include_path(__DIR__.'/classes/');
 spl_autoload_extensions('.php');
 spl_autoload_register();
 
-Settings::init(<<<END
+Settings::init(<<<CONFIG
 {
   "site": {
     "title": "Мой сайт"
@@ -15,16 +15,16 @@ Settings::init(<<<END
       "password": "neuronphp"
   },
   "timezone": "Asia/Yekaterinburg",
-  "session_cookie": {
+  "session": {
     "name": "neuronphp",
-    "time": 3600
+    "time": 14400,
+    "path": "/"
   },
-  "admins" : [1]
+  "admins": [1]
 }
-END
+CONFIG
 );
-
 
 date_default_timezone_set(Settings::get('timezone'));
 
-set_exception_handler('HTML::Exception');
+#set_exception_handler('HTML::Exception');
