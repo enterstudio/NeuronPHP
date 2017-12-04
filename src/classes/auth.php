@@ -67,7 +67,8 @@ class Auth {
     }
     $q=DB::prepare('SELECT * FROM users WHERE id=?');
     $q->execute([$user_id]);
-    $user=$q->fetch(PDO::FETCH_OBJ);
+    $q->setFetchMode(PDO::FETCH_CLASS,'User');
+    $user=$q->fetch();
     $q->closeCursor();
     if(!$user) {
       return false;
@@ -130,7 +131,8 @@ class Auth {
   private static function fetchUser($login,$password) {
     $q=DB::prepare('SELECT * FROM users WHERE login=?');
     $q->execute([$login]);
-    $user=$q->fetch(PDO::FETCH_OBJ);
+    $q->setFetchMode(PDO::FETCH_CLASS,'User');
+    $user=$q->fetch();
     $q->closeCursor();
     if(!$user) {
       return false;
