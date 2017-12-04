@@ -124,6 +124,17 @@ class HTML {
     echo 'File not found';
     exit;
   }
+  
+  public static function showLoginForm($url=false, $redirect_url=false, $title=false) {
+    $html=new \Templates\Login();
+    $html->site_title=\Settings::get('site')->title;
+    $html->title=$title?$title:'Вход в систему';
+    $html->url=$url?$url:'/login/';
+    $html->redirect_url=$redirect_url?$redirect_url:'/';
+    Header("Content-Type: text/html; charset=utf-8");
+    self::disableBrowserCache();
+    $html->show();
+  }
 
   public static function Exception($ex) {
     if ($ex instanceof AppException) {
@@ -137,14 +148,4 @@ class HTML {
     }
     self::showException($message);
   }
-
-  public static function __callStatic($name, $args) {
-    if (substr($name, 0, 4) != 'show') {
-      throw new Exception('Вызван несуществующий метод ' . $name);
-    }
-    $name = substr($name, 4);
-    $callback = array(self::getInstance(), $name);
-    return call_user_func_array($callback, $args);
-  }
-
 }

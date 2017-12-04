@@ -6,6 +6,6 @@ if(is_null($login) or is_null($password)) {
   HTML::showLoginForm();
   exit;
 }
-Auth::login($login,$password);
+Auth::authentication($login,$password);
 $url=filter_input(INPUT_POST,'redirect_url');
-header('Location: '.(is_null($url)?'/':$url));
+HTML::redirect(is_null($url)?'/':$url);
