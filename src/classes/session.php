@@ -44,8 +44,8 @@ class Session implements SessionHandlerInterface {
     $id=$q->fetch(PDO::FETCH_COLUMN);
     $q->closeCursor();
     if($id) {
-      $q=DB::prepare('UPDATE sessions SET session_expires=DATE_ADD(NOW(), INTERVAL session_duration SECOND), session_data=?, ip=?, browser=?');
-      $result=$q->execute([$session_data,getenv('REMOTE_ADDR'),getenv('HTTP_USER_AGENT')]);
+      $q=DB::prepare('UPDATE sessions SET session_expires=DATE_ADD(NOW(), INTERVAL session_duration SECOND), session_data=?, ip=?, browser=? WHERE session_id');
+      $result=$q->execute([$session_data,getenv('REMOTE_ADDR'),getenv('HTTP_USER_AGENT'),$session_id]);
     } else {
       $q=DB::prepare("INSERT INTO sessions SET session_id=?, session_duration=?, session_expires=DATE_ADD(NOW(), INTERVAL session_duration SECOND), session_data=?, ip=?, browser=?");
       $result=$q->execute([$session_id,$this->session_duration,$session_data,getenv('REMOTE_ADDR'),getenv('HTTP_USER_AGENT')]);
