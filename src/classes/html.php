@@ -107,15 +107,9 @@ class HTML {
     return getenv('HTTPS') !== false;
   }
 
-  public static function redirect($location) {
-    header("Location: $location");
+  public static function redirect($location,$response_code=303) {
+    header("Location: $location",true,$response_code);
     echo "<a href=\"$location\">$location</a>";
-    exit;
-  }
-
-  public static function redirect301($location) {
-    header(filter_input(INPUT_SERVER, 'SERVER_PROTOCOL') . " 301 Moved Permanently", true);
-    header("Location: $location");
     exit;
   }
 
