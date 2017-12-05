@@ -18,3 +18,46 @@
 Хранилище настроек сайта
 ## User
 Класс, хранящий информацию о пользователе.
+
+# Установка
+## С использованием composer
+Просто добавьте пакет fsa/neuronphp в список зависимостей composer.
+Далее используйте стандартный автозагрузчик классов composer.
+## Использование механизма автозагрузки классов PHP
+Скопируйте папку src/classes в свой проект. Остальные файлы не являются обязательными.
+Для обеспечения автозагрузки классов создайте файл common.php в корне проекта
+со следующим содержимым:
+```php
+# Внимание!!! Если вы как-то используете include_path, то добавьте сохранение старых путей.
+set_include_path(__DIR__.'/classes/');
+spl_autoload_extensions('.php');
+spl_autoload_register();
+```
+где classes/ - относительный путь от текущей папки этого файла до папки с классами.
+## Инициализация классов перед использованием
+Инициализируем класс Settings и добаляем в него настройки сайта
+```php
+Settings::init(<<<CONFIG
+{
+  "site": {
+    "title": "Мой сайт"
+  },
+  "session": {
+    "name": "neuronphp",
+    "time": 3600,
+    "path": "/"
+  },
+  "admins": [1]
+}
+CONFIG
+);
+```
+Инициализируем класс DB указывая параметры подключения к базе данных и задаём часовой пояс.
+```php
+DB::init("mysql:host=localhost;dbname=neuronphp;charset=utf8","username","password",'SET TIME_ZONE="Asia/Yekaterinburg"');
+date_default_timezone_set("Asia/Yekaterinburg");
+```
+Устанавливаем обработчик исключительных ситуаций
+```php
+set_exception_handler('HTML::Exception');
+```
