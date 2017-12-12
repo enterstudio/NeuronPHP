@@ -5,19 +5,24 @@ spl_autoload_register();
 
 Settings::init(<<<CONFIG
 {
-  "site": {
-    "title": "Мой сайт"
-  },
-  "session": {
-    "name": "neuronphp",
-    "time": 3600,
-    "path": "/"
-  },
-  "admins": [1]
+	"site": {
+		"title": "Мой сайт"
+	},
+	"session": {
+		"name": "neuronphp",
+		"time": 3600,
+		"path": "/"
+	},
+	"pdo": {
+		"dsn": "mysql:host=localhost;dbname=DB_NAME;charset=utf8",
+		"username": "DB_USER",
+		"password": "DB_PASSWORD",
+		"timezone_set": "SET TIME_ZONE=\"Asia/Yekaterinburg\""
+	},
+	"admins": [1]
 }
 CONFIG
 );
 
-DB::init("mysql:host=localhost;dbname=neuronphp;charset=utf8","username","password",'SET TIME_ZONE="Asia/Yekaterinburg"');
 date_default_timezone_set("Asia/Yekaterinburg");
 set_exception_handler('HTML::Exception');
